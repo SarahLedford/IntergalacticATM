@@ -176,47 +176,93 @@ Serving Our Customers to Infinity and Beyond
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
                         Console.Clear();
-                        Console.Write("How much would you like to withdraw?\n$");
+                        Console.Write($"Your current balance is {balance:c}\nHow much would you like to withdraw?\n$");
                         decimal userWithdraw = decimal.Parse(Console.ReadLine());
-                        balance -= userWithdraw;
-                        Console.Clear();
-                        Console.Write($"Thank you.\nYou have withdrawn {userWithdraw:c} from account number 00000.\n" +
-                            $"Your new balance is {balance:c}\n\n" +
-                            $"Would you like to:\n" +
-                            $"1. Make another deposit/withdrawal\n" +
-                            $"2. Exit ATM ");
-
-                        ConsoleKey anotherWithdrawal = Console.ReadKey().Key;
-
-                        switch (anotherWithdrawal)
+                        if (userWithdraw < balance)
                         {
-                            case ConsoleKey.D1:
-                            case ConsoleKey.NumPad1:
-                                Console.Clear();
-                                break;
+                            Console.Clear();
+                            balance -= userWithdraw;
+                            Console.Clear();
+                            Console.Write($"Thank you.\nYou have withdrawn {userWithdraw:c} from account number 00000.\n" +
+                                $"Your new balance is {balance:c}\n\n" +
+                                $"Would you like to:\n" +
+                                $"1. Make another deposit/withdrawal\n" +
+                                $"2. Exit ATM ");
 
-                            case ConsoleKey.D2:
-                            case ConsoleKey.NumPad2:
-                                Console.Clear();
-                                Console.WriteLine("You are now exiting the ATM. Are you sure? Y/N: ");
-                                ConsoleKey exitATMWithdrawal = Console.ReadKey().Key;
-                                switch (exitATMWithdrawal)
-                                {
-                                    case ConsoleKey.Y:
-                                        Console.Clear();
-                                        Console.WriteLine("Thank you for using Intergalactic Space Banks!\n" +
-                                            "We look forward to doing business with you again.\n\n" +
-                                            "{0}", logo);
-                                        exitMenu = true;
-                                        break;
+                            ConsoleKey anotherWithdrawal = Console.ReadKey().Key;
 
-                                    case ConsoleKey.N:
-                                        Console.Clear();
-                                        break;
-                                }
-                                break;
+                            switch (anotherWithdrawal)
+                            {
+                                case ConsoleKey.D1:
+                                case ConsoleKey.NumPad1:
+                                    Console.Clear();
+                                    break;
 
-                        }
+                                case ConsoleKey.D2:
+                                case ConsoleKey.NumPad2:
+                                    Console.Clear();
+                                    Console.WriteLine("You are now exiting the ATM. Are you sure? Y/N: ");
+                                    ConsoleKey exitATMWithdrawal = Console.ReadKey().Key;
+                                    switch (exitATMWithdrawal)
+                                    {
+                                        case ConsoleKey.Y:
+                                            Console.Clear();
+                                            Console.WriteLine("Thank you for using Intergalactic Space Banks!\n" +
+                                                "We look forward to doing business with you again.\n\n" +
+                                                "{0}", logo);
+                                            exitMenu = true;
+                                            break;
+
+                                        case ConsoleKey.N:
+                                            Console.Clear();
+                                            break;
+                                    }
+                                    break;
+
+                            }
+                        }//end if
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"I'm sorry, you don't have enough to withdraw. Please try again.\nYour current balance is {balance:c}");
+                            Console.Write($"Would you like to:\n" +
+                                $"1. Make another deposit/withdrawal\n" +
+                                $"2. Exit ATM ");
+
+                            ConsoleKey anotherWithdrawal = Console.ReadKey().Key;
+
+                            switch (anotherWithdrawal)
+                            {
+                                case ConsoleKey.D1:
+                                case ConsoleKey.NumPad1:
+                                    Console.Clear();
+                                    break;
+
+                                case ConsoleKey.D2:
+                                case ConsoleKey.NumPad2:
+                                    Console.Clear();
+                                    Console.WriteLine("You are now exiting the ATM. Are you sure? Y/N: ");
+                                    ConsoleKey exitATMWithdrawal = Console.ReadKey().Key;
+                                    switch (exitATMWithdrawal)
+                                    {
+                                        case ConsoleKey.Y:
+                                            Console.Clear();
+                                            Console.WriteLine("Thank you for using Intergalactic Space Banks!\n" +
+                                                "We look forward to doing business with you again.\n\n" +
+                                                "{0}", logo);
+                                            exitMenu = true;
+                                            break;
+
+                                        case ConsoleKey.N:
+                                            Console.Clear();
+                                            break;
+                                    }
+                                    break;
+
+                            }
+
+                        }//end else
+
 
                         break;
 
